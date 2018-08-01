@@ -1,4 +1,5 @@
 window.addEventListener('load', function () {
+  let touchStartX,touchStartY;
   let sliderImage = document.querySelectorAll('#slider > div');
   let slider = {
     position:{
@@ -27,7 +28,6 @@ window.addEventListener('load', function () {
           this.position[key] = sliderImage.length-1;
         }
       }
-
       sliderImage[slider.position.active1].classList.add('active1','twoRight');
       sliderImage[slider.position.active2].classList.add('active2','threeRight');
       sliderImage[slider.position.active3].classList.add('active3','fourRight');
@@ -57,7 +57,6 @@ window.addEventListener('load', function () {
   }
 
   function swipeRight() {
-    console.log('swipeRight()');
     sliderImage.forEach(image=>{
       image.removeAttribute('class');
     });
@@ -67,7 +66,26 @@ window.addEventListener('load', function () {
   sliderClassInit();
 
 
-document.getElementById('slideLeft').addEventListener('click',swipeLeft);
-document.getElementById('slideRight').addEventListener('click',swipeRight);
-  $('#widget').draggable();
+  document.getElementById('slider').addEventListener('touchmove',function (e) {
+    console.log('X',e.changedTouches[0].clientX);
+    console.log('Y',e.changedTouches[0].clientY);
+    let x = e.changedTouches[0].clientX;
+    let y = e.changedTouches[0].clientY;
+    if(x < touchStartX-30 && y > touchStartY-50 && y < touchStartY+50 ){
+      swipeLeft();
+    }else if(x > touchStartX+30 && y > touchStartY-50 && y < touchStartY+50){
+      swipeRight();
+    }
+
+  });
+  document.getElementById('slider').addEventListener('touchstart',function (e) {
+    //e.changedTouches[0]
+    console.log('X',e.changedTouches[0].clientX);
+    console.log('Y',e.changedTouches[0].clientY);
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  });
+// document.getElementById('slideLeft').addEventListener('click',swipeLeft);
+// document.getElementById('slideRight').addEventListener('click',swipeRight);
+  //$('#widget').slider();
 });
