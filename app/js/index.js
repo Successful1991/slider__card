@@ -1,5 +1,5 @@
 window.addEventListener('load', function () {
-  let sliderImage = document.querySelectorAll('.slider > div');
+  let sliderImage = document.querySelectorAll('#slider > div');
   let slider = {
     position:{
       active1: 0,
@@ -69,5 +69,5 @@ window.addEventListener('load', function () {
 
 document.getElementById('slideLeft').addEventListener('click',swipeLeft);
 document.getElementById('slideRight').addEventListener('click',swipeRight);
-
+  $('#widget').draggable();
 });

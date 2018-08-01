@@ -22,7 +22,7 @@ body {
 .mobile {
   height: 100%; }
 
-.slider {
+#slider {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -38,7 +38,7 @@ body {
   border: 1px solid green;
   margin: 0 auto; }
 
-.slider > div {
+#slider > div {
   position: absolute;
   width: 90%;
   height: auto;
